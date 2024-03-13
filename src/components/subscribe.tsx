@@ -81,7 +81,6 @@ export function Subscribe(props: SubscribeProps) {
     if (Object.keys(formErrors).length === 0) {
       setIsSubmitted(true);
       const isExistingSubscriber = await doesEmailExist(formData.email);
-      console.log(isExistingSubscriber);
       if (isExistingSubscriber) {
         setErrors({
           email:
