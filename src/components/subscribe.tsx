@@ -162,6 +162,20 @@ export function Subscribe(props: SubscribeProps) {
             </div>
             <div className="space-y-2">
               <Label htmlFor="stocks">Stocks</Label>
+
+              <Select
+                companies={props.companies}
+                stocks={formData.stocks}
+                setStocks={setFormData}
+              />
+              {errors.stocks && (
+                <p className="text-red-500 text-sm mt-1">{errors.stocks}</p>
+              )}
+            </div>
+            <div>
+              <Label htmlFor="stocks" className="font-normal">
+                Some popular stocks
+              </Label>
               <div className="rounded-lg flex justify-between divide-y">
                 {topStocks.map((stock, idx) => {
                   return (
@@ -186,23 +200,16 @@ export function Subscribe(props: SubscribeProps) {
                   );
                 })}
               </div>
-
-              <Select
-                companies={props.companies}
-                stocks={formData.stocks}
-                setStocks={setFormData}
-              />
-              {errors.stocks && (
-                <p className="text-red-500 text-sm mt-1">{errors.stocks}</p>
-              )}
             </div>
             <Button className="w-full" type="submit">
               Sign Up
             </Button>
           </form>
 
-          <div className="flex justify-center items-center hover:underline text-sm">
-            <Link href="/edit-watchlist">Edit watchlist</Link>
+          <div className="flex justify-center text-center items-center hover:underline text-sm">
+            <Link href="/edit-watchlist">
+              Already subscribed? Click here to edit your watchlist
+            </Link>
           </div>
         </div>
       </div>

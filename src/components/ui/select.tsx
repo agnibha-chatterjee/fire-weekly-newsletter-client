@@ -33,7 +33,7 @@ export const Select = (props: SelectProps) => {
   return (
     <ReactSelect
       value={values}
-      placeholder="Select stocks"
+      placeholder="Select stocks that you want to track"
       className="rounded-md border border-gray-100 text-sm"
       options={options}
       components={{ MenuList }}

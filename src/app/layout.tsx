@@ -6,8 +6,7 @@ import './globals.css';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'Hattori - A personalized stock market newsletter',
-  description: 'A stock market newsletter for the modern investor'
+  title: 'FireAI - A personalized portfolio copilot'
 };
 
 export default function RootLayout({
