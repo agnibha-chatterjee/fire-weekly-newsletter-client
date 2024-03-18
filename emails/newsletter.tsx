@@ -1,4 +1,5 @@
 import {
+  Column,
   Container,
   Font,
   Head,
@@ -13,7 +14,6 @@ import {
 } from '@react-email/components';
 import * as React from 'react';
 import '../src/lib/firebase';
-import { getCompanyLogo } from '../src/lib/storage';
 
 type CompanyNewsProps = {
   companyName: string;
@@ -28,7 +28,7 @@ function CompanyNews(props: CompanyNewsProps) {
   const isPositive = percentChange > 0;
 
   return (
-    <div
+    <Section
       style={{
         padding: 10,
         backgroundColor: '#f2f2f2',
@@ -36,33 +36,39 @@ function CompanyNews(props: CompanyNewsProps) {
         borderRadius: 3
       }}
     >
-      <div
+      <Section
         style={{
           display: 'flex',
           alignItems: 'center',
-          marginBottom: -20
+          marginBottom: -10
         }}
       >
-        <Img
-          src={`https://fire-ai.s3.us-west-1.amazonaws.com/company-logos-jpg/${tickerName}.jpg`}
-          alt="placeholder"
-          width={25}
-          height={25}
-          style={{ marginRight: 10, borderRadius: 3 }}
-        />
-        <Text>
-          <span style={{ fontWeight: 'bold' }}>{companyName}</span>: $
-          {stockPrice} (
-          {isPositive ? (
-            <span style={{ color: 'green' }}>+{percentChange}%</span>
-          ) : (
-            <span style={{ color: 'red' }}>{percentChange}%</span>
-          )}
-          )
-        </Text>
-      </div>
-      <Text>{news}</Text>
-    </div>
+        <Row>
+          <Column>
+            <Img
+              src={`https://fire-ai.s3.us-west-1.amazonaws.com/company-logos-jpg/${tickerName}.jpg`}
+              alt="placeholder"
+              width={25}
+              height={25}
+              style={{ marginRight: 10, borderRadius: 3 }}
+            />
+          </Column>
+          <Column>
+            <Text>
+              <span style={{ fontWeight: 'bold' }}>{companyName}</span>: $
+              {stockPrice} (
+              {isPositive ? (
+                <span style={{ color: 'green' }}>+{percentChange}%</span>
+              ) : (
+                <span style={{ color: 'red' }}>{percentChange}%</span>
+              )}
+              )
+            </Text>
+          </Column>
+        </Row>
+      </Section>
+      <span style={{ fontSize: 14 }}>{news}</span>
+    </Section>
   );
 }
 
@@ -83,45 +89,36 @@ const NewsletterEmail = () => {
       </Head>
       <Container
         style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          padding: '20px',
+          padding: 20,
           border: '1px solid #e5e7eb'
         }}
       >
         <Section>
-          <Img
-            src="https://fire-ai.s3.us-west-1.amazonaws.com/fireai-logo.png"
-            alt="placeholder"
-            width={80}
-            height={80}
-          />
-          <Heading as="h2">Weekly Portfolio Insights</Heading>
-          <Row>
-            <Heading as="h4">Hello!</Heading>
-            <Text>Thanks for subscribing!</Text>
-            <Text>
-              Fire AI delivers curated news and insights tailored to your
-              watchlist directly to your inbox, ensuring you get a clear view
-              without the clutter or hassle.
-            </Text>
-            <Text>
-              You can edit your watchlist for next week{' '}
-              <Link href="https://fireai.vercel.app/edit-watchlist">here</Link>
-            </Text>
-          </Row>
+          <Section style={{ textAlign: 'center' }}>
+            <Img
+              src="https://fire-ai.s3.us-west-1.amazonaws.com/fireai-logo.png"
+              alt="placeholder"
+              width={80}
+              height={80}
+              style={{ margin: '0 auto' }}
+            />
+            <Heading as="h2">Weekly Portfolio Insights</Heading>
+          </Section>
+
+          <Heading as="h4">Hello!</Heading>
+          <Text>Thanks for subscribing!</Text>
+          <Text>
+            Fire AI delivers curated news and insights tailored to your
+            watchlist directly to your inbox, ensuring you get a clear view
+            without the clutter or hassle.
+          </Text>
+          <Text>
+            You can edit your watchlist for next week{' '}
+            <Link href="https://fireai.vercel.app/edit-watchlist">here</Link>
+          </Text>
         </Section>
 
         <Section>
-          {/* <div
-            style={{
-              border: '1px solid #D8D8D8',
-              padding: '20px 10px',
-              backgroundColor: 'white',
-              borderRadius: 4
-            }}
-          > */}
           <Heading as="h4">Your watchlist</Heading>
           <CompanyNews
             companyName="Apple"
@@ -137,9 +134,8 @@ const NewsletterEmail = () => {
             stockPrice={200}
             news="Microsoft and Oracle have expanded their partnership to satisfy the global demand for Oracle Database on Azure"
           />
-          {/* </div> */}
         </Section>
-        <Section style={{ display: 'flex' }}>
+        <Section>
           <Heading as="h4">Links that {"don't"} suck</Heading>
           <ul>
             <li>
