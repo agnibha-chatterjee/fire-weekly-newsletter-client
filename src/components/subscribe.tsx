@@ -212,7 +212,6 @@ export function Subscribe(props: SubscribeProps) {
               Already subscribed? Click here to edit your watchlist
             </Link>
           </div>
-          <MyEmail />
         </div>
       </div>
     </div>
