@@ -10,6 +10,7 @@ import { Button } from '@/components/ui/button';
 import { doesEmailExist, subscribe } from '@/lib/firestore';
 import { FeyFormat, Subscriber } from '@/types';
 import toast, { Toaster } from 'react-hot-toast';
+import MyEmail from '../../emails/newsletter';
 
 type ErrorState = {
   name?: string;
@@ -211,6 +212,7 @@ export function Subscribe(props: SubscribeProps) {
               Already subscribed? Click here to edit your watchlist
             </Link>
           </div>
+          <MyEmail />
         </div>
       </div>
     </div>
