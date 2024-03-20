@@ -196,7 +196,7 @@ export function Subscribe(props: SubscribeProps) {
                         width={32}
                         height={32}
                       />
-                      <p className="text-xs text-center">{stock.name}</p>
+                      <p className="text-xs text-center">{stock.tickerName}</p>
                     </div>
                   );
                 })}

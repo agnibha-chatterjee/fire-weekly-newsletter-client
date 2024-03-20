@@ -11,6 +11,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { FeyFormat, Stock, Subscriber } from '@/types';
 import { Toaster } from 'react-hot-toast';
+import { useSearchParams } from 'next/navigation';
 
 interface EditWatchlistProps {
   companies: FeyFormat[];
@@ -19,11 +20,16 @@ interface EditWatchlistProps {
 export function EditWatchlist(props: EditWatchlistProps) {
   const { companies } = props;
 
-  const [_email, setEmail] = useState('');
+  const searchParams = useSearchParams();
+
+  const emailFromUrl = searchParams.get('email') ?? '';
+
+  const [_email, setEmail] = useState(() => emailFromUrl);
+
   const [subscriber, setSubscriber] = useState<Subscriber | undefined>(
     undefined
   );
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(!!emailFromUrl);
   const [showAddStock, setShowAddStock] = useState(false);
   const [email] = useDebouncedValue(_email, 500);
   const stocksRef = useRef<Stock[]>([]);
