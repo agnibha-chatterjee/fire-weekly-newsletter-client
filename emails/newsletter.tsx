@@ -13,7 +13,6 @@ import {
   Text
 } from '@react-email/components';
 import * as React from 'react';
-import '../src/lib/firebase';
 
 type CompanyNewsProps = {
   companyName: string;
@@ -30,7 +29,7 @@ function CompanyNews(props: CompanyNewsProps) {
   return (
     <Section
       style={{
-        padding: 10,
+        padding: '0px 10px 10px 10px',
         backgroundColor: '#f2f2f2',
         margin: '7.5px 0',
         borderRadius: 3
@@ -72,7 +71,49 @@ function CompanyNews(props: CompanyNewsProps) {
   );
 }
 
-const NewsletterEmail = () => {
+const NewsletterEmail = (props: any) => {
+  const { user, news, links, test = true } = props;
+
+  if (test) {
+    return (
+      <Html>
+        <Section>
+          <Text>
+            <span style={{ fontWeight: 'bold' }}>The case for Apple</span>
+            <Text>
+              Apple is currently trading far below expectations and have
+              remained mostly flat despite the recent tech run up due to AI. The
+              main reason is probably because of the sentiment that Apple is
+              struggling to keep up with the revolution. However, {"Apple's "}
+              deliberate pace seems strategic, catering to its vast 2 billion
+              users. With a track record of innovation, like the Vision Pro, and
+              the{' '}
+              <Link href="https://www.engadget.com/apple-releases-an-ai-model-that-can-edit-images-based-on-text-based-commands-081646262.html">
+                recent introduction
+              </Link>{' '}
+              of a text-based AI for editing photos, Apple is clearly focused on
+              creating real, everyday value distinguishing it from others that
+              are building picks and shovels.
+              <Text>Stay tuned 👀</Text>
+            </Text>
+          </Text>
+          <Img
+            src="https://fire-ai.s3.us-west-1.amazonaws.com/mar18-1.png"
+            alt="placeholder"
+            width={600}
+            style={{ margin: '0 auto', borderRadius: 5, marginBottom: 20 }}
+          />
+          <Img
+            src="https://fire-ai.s3.us-west-1.amazonaws.com/mar18-2.png"
+            alt="placeholder"
+            width={600}
+            style={{ margin: '0 auto', borderRadius: 5 }}
+          />
+        </Section>
+      </Html>
+    );
+  }
+
   return (
     <Html>
       <Head>
@@ -89,8 +130,8 @@ const NewsletterEmail = () => {
       </Head>
       <Container
         style={{
-          padding: 20,
-          border: '1px solid #e5e7eb'
+          minWidth: 650,
+          padding: 20
         }}
       >
         <Section>
@@ -100,7 +141,7 @@ const NewsletterEmail = () => {
               alt="placeholder"
               width={80}
               height={80}
-              style={{ margin: '0 auto' }}
+              style={{ margin: '0 auto', borderRadius: 5 }}
             />
             <Heading as="h2">Weekly Portfolio Insights</Heading>
           </Section>
@@ -120,40 +161,61 @@ const NewsletterEmail = () => {
 
         <Section>
           <Heading as="h4">Your watchlist</Heading>
-          <CompanyNews
-            companyName="Apple"
-            tickerName="AAPL"
-            percentChange={-2.86}
-            stockPrice={100}
-            news="Apple Inc reported a quarterly revenue of $89.5 billion in Q4 2023, which is a 1% decrease year-over-year. However, their earnings per diluted share increased by 13% year-over-year to $1.46. iPhone revenue set a September quarter record, and Services revenue reached a new all-time high. The company returned nearly $25 billion to shareholders during this period"
-          />
-          <CompanyNews
-            companyName="Microsoft"
-            tickerName="MSFT"
-            percentChange={1.99}
-            stockPrice={200}
-            news="Microsoft and Oracle have expanded their partnership to satisfy the global demand for Oracle Database on Azure"
-          />
+          {news.map((n: any) => (
+            <CompanyNews
+              key={n.tickerName}
+              companyName={n.stock_name}
+              tickerName={n.tickerName}
+              stockPrice={n.last_closing_price}
+              percentChange={n.weekly_price_change}
+              news={n.summary}
+            />
+          ))}
         </Section>
         <Section>
           <Heading as="h4">Links that {"don't"} suck</Heading>
           <ul>
-            <li>
-              <Link>Link 1</Link>
-            </li>
-            <li>
-              <Link>Link 2</Link>
-            </li>
-            <li>
-              <Link>Link 3</Link>
-            </li>
-            <li>
-              <Link>Link 4</Link>
-            </li>
-            <li>
-              <Link>Link 5</Link>
-            </li>
+            {links.links.map((link: any) => {
+              return (
+                <li key={link.url}>
+                  <Link href={link.url}>{link.description}</Link>
+                </li>
+              );
+            })}
           </ul>
+        </Section>
+        <Section>
+          <Text>
+            <span style={{ fontWeight: 'bold' }}>The case for Apple</span>
+            <Text>
+              Apple is currently trading far below expectations and have
+              remained mostly flat despite the recent tech run up due to AI. The
+              main reason is probably because of the sentiment that Apple is
+              struggling to keep up with the revolution. However, {"Apple's"}
+              deliberate pace seems strategic, catering to its vast 2 billion
+              users. With a track record of innovation, like the Vision Pro, and
+              the{' '}
+              <Link href="https://www.engadget.com/apple-releases-an-ai-model-that-can-edit-images-based-on-text-based-commands-081646262.html">
+                recent introduction
+              </Link>{' '}
+              of a text-based AI for editing photos, Apple is clearly focused on
+              creating real, everyday value distinguishing it from others that
+              are building picks and shovels.
+              <Text>Stay tuned 👀</Text>
+            </Text>
+          </Text>
+          <Img
+            src="https://fire-ai.s3.us-west-1.amazonaws.com/mar18-1.png"
+            alt="placeholder"
+            width={600}
+            style={{ margin: '0 auto', borderRadius: 5, marginBottom: 20 }}
+          />
+          <Img
+            src="https://fire-ai.s3.us-west-1.amazonaws.com/mar18-2.png"
+            alt="placeholder"
+            width={600}
+            style={{ margin: '0 auto', borderRadius: 5 }}
+          />
         </Section>
       </Container>
     </Html>

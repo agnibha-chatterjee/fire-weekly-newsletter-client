@@ -3,11 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbo",
+    "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "email:dev": "email dev -p 3001"
+    "email:dev": "email dev -p 3001",
+    "email:build": "email build"
   },
   "dependencies": {
     "@radix-ui/react-icons": "^1.3.0",

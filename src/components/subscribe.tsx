@@ -10,7 +10,6 @@ import { Button } from '@/components/ui/button';
 import { doesEmailExist, subscribe } from '@/lib/firestore';
 import { FeyFormat, Subscriber } from '@/types';
 import toast, { Toaster } from 'react-hot-toast';
-import MyEmail from '../../emails/newsletter';
 
 type ErrorState = {
   name?: string;
@@ -162,7 +161,7 @@ export function Subscribe(props: SubscribeProps) {
               )}
             </div>
             <div className="space-y-2">
-              <Label htmlFor="stocks">Stocks</Label>
+              <Label htmlFor="stocks">Add stocks to watchlist</Label>
 
               <Select
                 companies={props.companies}
@@ -173,9 +172,9 @@ export function Subscribe(props: SubscribeProps) {
                 <p className="text-red-500 text-sm mt-1">{errors.stocks}</p>
               )}
             </div>
-            <div>
+            <div className="my-5">
               <Label htmlFor="stocks" className="font-normal">
-                Some popular stocks
+                Tap to add these popular stocks to your watchlist
               </Label>
               <div className="rounded-lg flex justify-between divide-y">
                 {topStocks.map((stock, idx) => {
@@ -188,22 +187,23 @@ export function Subscribe(props: SubscribeProps) {
                         }))
                       }
                       key={stock.tickerName + idx}
-                      className="p-2 rounded-md cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+                      className="w-24 p-2 rounded-md cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors flex flex-col items-center mx-1"
                     >
                       <Image
-                        className="rounded-md"
+                        className="rounded-md mb-1"
                         src={`/logo/${stock.tickerName}.svg`}
                         alt={stock.name}
                         width={32}
                         height={32}
                       />
+                      <p className="text-xs text-center">{stock.name}</p>
                     </div>
                   );
                 })}
               </div>
             </div>
             <Button className="w-full" type="submit">
-              Sign Up
+              Subscribe
             </Button>
           </form>
 

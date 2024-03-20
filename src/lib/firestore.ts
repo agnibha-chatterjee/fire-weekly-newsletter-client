@@ -1,4 +1,4 @@
-import { Stock, Subscriber } from '@/types';
+import { LinksThatDontSuck, Stock, Subscriber } from '@/types';
 import { firebaseApp } from './firebase';
 import {
   addDoc,
@@ -8,17 +8,22 @@ import {
   query,
   where,
   doc,
-  updateDoc
+  updateDoc,
+  getDoc,
+  Timestamp
 } from 'firebase/firestore';
 
-const COLLECTION_NAME = 'newsletter';
+const NEWSLETTER_COLLECTION = 'newsletter';
+const SUMMARIES_COLLECTION = 'summaries';
+const LINKS_COLLECTION = 'links';
 
 const db = getFirestore(firebaseApp);
-const col = collection(db, COLLECTION_NAME);
+const newsletterCol = collection(db, NEWSLETTER_COLLECTION);
+const linksCol = collection(db, LINKS_COLLECTION);
 
 export const subscribe = async (data: any) => {
   try {
-    await addDoc(col, data);
+    await addDoc(newsletterCol, data);
     return true;
   } catch (error) {
     console.error('Error adding document: ', error);
@@ -28,7 +33,7 @@ export const subscribe = async (data: any) => {
 
 export const doesEmailExist = async (email: string) => {
   try {
-    const q = query(col, where('email', '==', email));
+    const q = query(newsletterCol, where('email', '==', email));
     const allDocs = getDocs(q);
     return (await allDocs).docs.length > 0;
   } catch (error) {
@@ -39,7 +44,7 @@ export const doesEmailExist = async (email: string) => {
 
 export const getSubscription = async (email: string) => {
   try {
-    const q = query(col, where('email', '==', email));
+    const q = query(newsletterCol, where('email', '==', email));
     const querySnapshot = await getDocs(q);
     let subscriber: Subscriber | undefined;
     querySnapshot.forEach(doc => {
@@ -58,7 +63,7 @@ export const updateSubscription = async (
   subscribedStocks: Stock[]
 ) => {
   try {
-    const docRef = doc(db, COLLECTION_NAME, id);
+    const docRef = doc(db, NEWSLETTER_COLLECTION, id);
     await updateDoc(docRef, {
       stocks: subscribedStocks
     });
@@ -68,3 +73,69 @@ export const updateSubscription = async (
     return false;
   }
 };
+
+export const getAllSubscriptions = async () => {
+  try {
+    const querySnapshot = await getDocs(newsletterCol);
+    let subscribers: Subscriber[] = [];
+    querySnapshot.forEach(doc => {
+      const subscriber = doc.data() as Subscriber;
+      subscriber.id = doc.id;
+      subscribers.push(subscriber);
+    });
+    return subscribers;
+  } catch (error) {
+    console.error('Error getting document: ', error);
+    return [];
+  }
+};
+
+export const getNewsSummaryForStock = async (ticker: string) => {
+  try {
+    const tickerNews = doc(db, SUMMARIES_COLLECTION, ticker);
+    const querySnapshot = await getDoc(tickerNews);
+    return {
+      tickerName: querySnapshot.id,
+      ...querySnapshot.data()
+    };
+  } catch (error) {
+    console.error('Error getting document: ', error);
+    return undefined;
+  }
+};
+
+function addDays(days: number) {
+  var date = new Date();
+  date.setDate(date.getDate() + days);
+  return date;
+}
+
+export const getLinksThatDontSuck =
+  async (): Promise<null | LinksThatDontSuck> => {
+    try {
+      const startDate = new Date();
+      const endDate = addDays(1);
+
+      const startTimestamp = Timestamp.fromDate(startDate);
+      const endTimestamp = Timestamp.fromDate(endDate);
+
+      const q = query(
+        linksCol,
+        where('date', '>=', startTimestamp),
+        where('date', '<', endTimestamp)
+      );
+
+      const querySnapshot = await getDocs(q);
+
+      let lnks: LinksThatDontSuck | null = null;
+      querySnapshot.forEach(doc => {
+        lnks = doc.data() as LinksThatDontSuck;
+        lnks.id = doc.id;
+      });
+
+      return lnks;
+    } catch (error) {
+      console.error('Error getting document: ', error);
+      return null;
+    }
+  };
