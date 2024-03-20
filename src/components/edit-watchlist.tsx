@@ -1,6 +1,5 @@
 'use client';
 
-import { Suspense } from 'react';
 import { Label } from '@/components/ui/label';
 import { Input } from '@/components/ui/input';
 import { SetStateAction, useEffect, useRef, useState } from 'react';
@@ -50,7 +49,7 @@ export function EditWatchlist(props: EditWatchlistProps) {
   }, [email]);
 
   return (
-    <Suspense>
+    <>
       <Toaster />
       <div className="flex flex-col">
         <main className="flex-1 grid w-full min-h-0 p-4 gap-4 md:p-6 md:gap-6">
@@ -133,6 +132,6 @@ export function EditWatchlist(props: EditWatchlistProps) {
           </div>
         </main>
       </div>
-    </Suspense>
+    </>
   );
 }
