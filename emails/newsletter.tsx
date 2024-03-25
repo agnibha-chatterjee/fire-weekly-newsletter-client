@@ -10,9 +10,9 @@ import {
   Link,
   Row,
   Section,
-  Text
-} from '@react-email/components';
-import * as React from 'react';
+  Text,
+} from "@react-email/components";
+import * as React from "react";
 
 type CompanyNewsProps = {
   companyName: string;
@@ -26,7 +26,7 @@ function LargerText(props: any) {
   return (
     <Text
       style={{
-        fontSize: 32
+        fontSize: 16,
       }}
     >
       {props.children}
@@ -39,7 +39,7 @@ function LargerLink(props: any) {
     <Link
       href={props.href}
       style={{
-        fontSize: 32
+        fontSize: 16,
       }}
     >
       {props.children}
@@ -54,17 +54,17 @@ function CompanyNews(props: CompanyNewsProps) {
   return (
     <Section
       style={{
-        padding: '0px 10px 10px 10px',
-        backgroundColor: '#f2f2f2',
-        margin: '12.5px 0',
-        borderRadius: 3
+        padding: "0px 10px 10px 10px",
+        backgroundColor: "#f2f2f2",
+        margin: "12.5px 0",
+        borderRadius: 3,
       }}
     >
       <Section
         style={{
-          display: 'flex',
-          alignItems: 'center',
-          marginBottom: -10
+          display: "flex",
+          alignItems: "center",
+          marginBottom: -10,
         }}
       >
         <Row>
@@ -79,19 +79,19 @@ function CompanyNews(props: CompanyNewsProps) {
           </Column>
           <Column>
             <LargerText>
-              <span style={{ fontWeight: 'bold' }}>{companyName}</span> $
+              <span style={{ fontWeight: "bold" }}>{companyName}</span> $
               {stockPrice} (
               {isPositive ? (
-                <span style={{ color: 'green' }}>+{percentChange}%</span>
+                <span style={{ color: "green" }}>+{percentChange}%</span>
               ) : (
-                <span style={{ color: 'red' }}>{percentChange}%</span>
+                <span style={{ color: "red" }}>{percentChange}%</span>
               )}
               )
             </LargerText>
           </Column>
         </Row>
       </Section>
-      <span style={{ fontSize: 32 }}>{news}</span>
+      <span style={{ fontSize: 16 }}>{news}</span>
     </Section>
   );
 }
@@ -101,81 +101,81 @@ const NewsletterEmail = (props: any) => {
 
   if (test) {
     const user = {
-      email: 'kanav2garg@gmail.com'
+      email: "kanav2garg@gmail.com",
     };
 
     const linksThatDontSuck = [
       {
-        url: 'https://www.bloomberg.com/news/articles/2021-03-18/tesla-s-elon-musk-says-he-s-a-supporter-of-bitcoin',
-        description: 'OMG APPLE IS MAKING iCAR'
+        url: "https://www.bloomberg.com/news/articles/2021-03-18/tesla-s-elon-musk-says-he-s-a-supporter-of-bitcoin",
+        description: "OMG APPLE IS MAKING iCAR",
       },
       {
-        url: 'https://www.bloomberg.com/news/articles/2021-03-18/tesla-s-elon-musk-says-he-s-a-supporter-of-bitcoin',
-        description: 'Some gigantic news'
+        url: "https://www.bloomberg.com/news/articles/2021-03-18/tesla-s-elon-musk-says-he-s-a-supporter-of-bitcoin",
+        description: "Some gigantic news",
       },
       {
-        url: 'https://www.bloomberg.com/news/articles/2021-03-18/tesla-s-elon-musk-says-he-s-a-supporter-of-bitcoin',
-        description: 'Some other breaking news'
+        url: "https://www.bloomberg.com/news/articles/2021-03-18/tesla-s-elon-musk-says-he-s-a-supporter-of-bitcoin",
+        description: "Some other breaking news",
       },
       {
-        url: 'https://www.bloomberg.com/news/articles/2021-03-18/tesla-s-elon-musk-says-he-s-a-supporter-of-bitcoin',
-        description: 'Some other breaking news'
+        url: "https://www.bloomberg.com/news/articles/2021-03-18/tesla-s-elon-musk-says-he-s-a-supporter-of-bitcoin",
+        description: "Some other breaking news",
       },
       {
-        url: 'https://www.bloomberg.com/news/articles/2021-03-18/tesla-s-elon-musk-says-he-s-a-supporter-of-bitcoin',
-        description: 'Some other breaking news 222'
-      }
+        url: "https://www.bloomberg.com/news/articles/2021-03-18/tesla-s-elon-musk-says-he-s-a-supporter-of-bitcoin",
+        description: "Some other breaking news 222",
+      },
     ];
 
     const newss = [
       {
-        tickerName: 'AAPL',
-        stock_name: 'Apple Inc.',
+        tickerName: "AAPL",
+        stock_name: "Apple Inc.",
         last_closing_price: 120.53,
         weekly_price_change: 0.5,
         summary:
-          "Apple is currently trading far below expectations and have remained mostly flat despite the recent tech run up due to AI. The main reason is probably because of the sentiment that Apple is struggling to keep up with the revolution. However, Apple's deliberate pace seems strategic, catering to its vast 2 billion users. With a track record of innovation, like the Vision Pro, and the recent introduction of a LargerText-based AI for editing photos, Apple is clearly focused on creating real, everyday value distinguishing it from others that are building picks and shovels."
+          "Apple is currently trading far below expectations and have remained mostly flat despite the recent tech run up due to AI. The main reason is probably because of the sentiment that Apple is struggling to keep up with the revolution. However, Apple's deliberate pace seems strategic, catering to its vast 2 billion users. With a track record of innovation, like the Vision Pro, and the recent introduction of a LargerText-based AI for editing photos, Apple is clearly focused on creating real, everyday value distinguishing it from others that are building picks and shovels.",
       },
       {
-        tickerName: 'MSFT',
-        stock_name: 'Microsoft Inc.',
+        tickerName: "MSFT",
+        stock_name: "Microsoft Inc.",
         last_closing_price: 230.53,
         weekly_price_change: -0.5,
         summary:
-          "Microsoft is currently trading far below expectations and have remained mostly flat despite the recent tech run up due to AI. The main reason is probably because of the sentiment that Microsoft is struggling to keep up with the revolution. However, Microsoft's deliberate pace seems strategic, catering to its vast 2 billion users. With a track record of innovation, like the Vision Pro, and the recent introduction of a LargerText-based AI for editing photos, Microsoft is clearly focused on creating real, everyday value distinguishing it from others that are building picks and shovels."
+          "Microsoft is currently trading far below expectations and have remained mostly flat despite the recent tech run up due to AI. The main reason is probably because of the sentiment that Microsoft is struggling to keep up with the revolution. However, Microsoft's deliberate pace seems strategic, catering to its vast 2 billion users. With a track record of innovation, like the Vision Pro, and the recent introduction of a LargerText-based AI for editing photos, Microsoft is clearly focused on creating real, everyday value distinguishing it from others that are building picks and shovels.",
       },
       {
-        tickerName: 'GOOGL',
-        stock_name: 'Alphabet Inc.',
+        tickerName: "GOOGL",
+        stock_name: "Alphabet Inc.",
         last_closing_price: 130.53,
         weekly_price_change: 0.5,
         summary:
-          "Alphabet is currently trading far below expectations and have remained mostly flat despite the recent tech run up due to AI. The main reason is probably because of the sentiment that Alphabet is struggling to keep up with the revolution. However, Alphabet's deliberate pace seems strategic, catering to its vast 2 billion users. With a track record of innovation, like the Vision Pro, and the recent introduction of a LargerText-based AI for editing photos, Alphabet is clearly focused on creating real, everyday value distinguishing it from others that are building picks and shovels."
+          "Alphabet is currently trading far below expectations and have remained mostly flat despite the recent tech run up due to AI. The main reason is probably because of the sentiment that Alphabet is struggling to keep up with the revolution. However, Alphabet's deliberate pace seems strategic, catering to its vast 2 billion users. With a track record of innovation, like the Vision Pro, and the recent introduction of a LargerText-based AI for editing photos, Alphabet is clearly focused on creating real, everyday value distinguishing it from others that are building picks and shovels.",
       },
       {
-        tickerName: 'AMZN',
-        stock_name: 'Amazon Inc.',
+        tickerName: "AMZN",
+        stock_name: "Amazon Inc.",
         last_closing_price: 320.53,
         weekly_price_change: 0.5,
         summary:
-          "Amazon is currently trading far below expectations and have remained mostly flat despite the recent tech run up due to AI. The main reason is probably because of the sentiment that Amazon is struggling to keep up with the revolution. However, Amazon's deliberate pace seems strategic, catering to its vast 2 billion users. With a track record of innovation, like the Vision Pro, and the recent introduction of a LargerText-based AI for editing photos, Amazon is clearly focused on creating real, everyday value distinguishing it from others that are building picks and shovels."
+          "Amazon is currently trading far below expectations and have remained mostly flat despite the recent tech run up due to AI. The main reason is probably because of the sentiment that Amazon is struggling to keep up with the revolution. However, Amazon's deliberate pace seems strategic, catering to its vast 2 billion users. With a track record of innovation, like the Vision Pro, and the recent introduction of a LargerText-based AI for editing photos, Amazon is clearly focused on creating real, everyday value distinguishing it from others that are building picks and shovels.",
       },
       {
-        tickerName: 'TSLA',
-        stock_name: 'Tesla Inc.',
+        tickerName: "TSLA",
+        stock_name: "Tesla Inc.",
         last_closing_price: 420.53,
         weekly_price_change: 0.5,
         summary:
-          "Tesla is currently trading far below expectations and have remained mostly flat despite the recent tech run up due to AI. The main reason is probably because of the sentiment that Tesla is struggling to keep up with the revolution. However, Tesla's deliberate pace seems strategic, catering to its vast 2 billion users. With a track record of innovation, like the Vision Pro, and the recent introduction of a LargerText-based AI for editing photos, Tesla is clearly focused on creating real, everyday value distinguishing it from others that are building picks and shovels."
+          "Tesla is currently trading far below expectations and have remained mostly flat despite the recent tech run up due to AI. The main reason is probably because of the sentiment that Tesla is struggling to keep up with the revolution. However, Tesla's deliberate pace seems strategic, catering to its vast 2 billion users. With a track record of innovation, like the Vision Pro, and the recent introduction of a LargerText-based AI for editing photos, Tesla is clearly focused on creating real, everyday value distinguishing it from others that are building picks and shovels.",
       },
       {
-        tickerName: 'META',
-        stock_name: 'Facebook Inc.',
+        tickerName: "META",
+        stock_name: "Facebook Inc.",
         last_closing_price: 520.53,
         weekly_price_change: 0.5,
         summary:
-          "Facebook is currently trading far below expectations and have remained mostly flat despite the recent tech run up due to AI. The main reason is probably because of the sentiment that Facebook is struggling to keep up with the revolution. However, Facebook's deliberate pace seems strategic, catering to its vast 2 billion users. With a track record of innovation, like the Vision Pro, and the recent introduction of a LargerText-based AI for editing photos, Facebook is clearly focused on creating real, everyday value distinguishing it from others that are building picks and shovels."
-      }
+          "Facebook is currently trading far below expectations and have remained mostly flat despite the recent tech run up due to AI. The main reason is probably because of the sentiment that Facebook is struggling to keep up with the revolution. However, Facebook's deliberate pace seems strategic, catering to its vast 2 billion users. With a track record of innovation, like the Vision Pro, and the recent introduction of a LargerText-based AI for editing photos, Facebook is clearly focused on creating real, everyday value distinguishing it from others that are building picks and shovels.",
+      },
     ];
 
     return (
@@ -185,8 +185,8 @@ const NewsletterEmail = (props: any) => {
             fontFamily="Carlito"
             fallbackFontFamily="Verdana"
             webFont={{
-              url: 'https://fonts.googleapis.com/css2?family=Carlito:ital,wght@0,400;0,700;1,400;1,700&display=swap',
-              format: 'woff2'
+              url: "https://fonts.googleapis.com/css2?family=Carlito:ital,wght@0,400;0,700;1,400;1,700&display=swap",
+              format: "woff2",
             }}
             fontWeight={400}
             fontStyle="normal"
@@ -195,17 +195,17 @@ const NewsletterEmail = (props: any) => {
         <Container
           style={{
             minWidth: 650,
-            padding: 20
+            padding: 20,
           }}
         >
           <Section>
-            <Section style={{ textAlign: 'center' }}>
+            <Section style={{ textAlign: "center" }}>
               <Img
                 src="https://fire-ai.s3.us-west-1.amazonaws.com/fireai-logo.png"
                 alt="placeholder"
                 width={120}
                 height={120}
-                style={{ margin: '0 auto', borderRadius: 5 }}
+                style={{ margin: "0 auto", borderRadius: 5 }}
               />
               <Heading as="h1" style={{ fontSize: 40 }}>
                 Weekly Portfolio Insights
@@ -222,7 +222,7 @@ const NewsletterEmail = (props: any) => {
               without the clutter or hassle.
             </LargerText>
             <LargerText>
-              You can edit your watchlist for next week{' '}
+              You can edit your watchlist for next week{" "}
               <LargerLink
                 href={`http://localhost:3000/edit-watchlist?email=${user.email}`}
               >
@@ -246,7 +246,7 @@ const NewsletterEmail = (props: any) => {
               />
             ))}
           </Section>
-          <Section>
+          {/* <Section>
             <Heading as="h2" style={{ fontSize: 34 }}>
               Links that {"don't"} suck
             </Heading>
@@ -259,7 +259,7 @@ const NewsletterEmail = (props: any) => {
                 );
               })}
             </ul>
-          </Section>
+          </Section> */}
           <Section>
             <LargerText>
               <Heading as="h2" style={{ fontSize: 34 }}>
@@ -269,14 +269,14 @@ const NewsletterEmail = (props: any) => {
                 Apple is currently trading far below expectations and have
                 remained mostly flat despite the recent tech run up due to AI.
                 The main reason is probably because of the sentiment that Apple
-                is struggling to keep up with the revolution. However,{' '}
+                is struggling to keep up with the revolution. However,{" "}
                 {"Apple's"}
                 deliberate pace seems strategic, catering to its vast 2 billion
                 users. With a track record of innovation, like the Vision Pro,
-                and the{' '}
+                and the{" "}
                 <LargerLink href="https://www.engadget.com/apple-releases-an-ai-model-that-can-edit-images-based-on-LargerText-based-commands-081646262.html">
                   recent introduction
-                </LargerLink>{' '}
+                </LargerLink>{" "}
                 of a LargerText-based AI for editing photos, Apple is clearly
                 focused on creating real, everyday value distinguishing it from
                 others that are building picks and shovels.
@@ -287,13 +287,13 @@ const NewsletterEmail = (props: any) => {
               src="https://fire-ai.s3.us-west-1.amazonaws.com/mar18-1.png"
               alt="placeholder"
               width={600}
-              style={{ margin: '0 auto', borderRadius: 5, marginBottom: 20 }}
+              style={{ margin: "0 auto", borderRadius: 5, marginBottom: 20 }}
             />
             <Img
               src="https://fire-ai.s3.us-west-1.amazonaws.com/mar18-2.png"
               alt="placeholder"
               width={600}
-              style={{ margin: '0 auto', borderRadius: 5 }}
+              style={{ margin: "0 auto", borderRadius: 5 }}
             />
           </Section>
         </Container>
@@ -308,8 +308,8 @@ const NewsletterEmail = (props: any) => {
           fontFamily="Carlito"
           fallbackFontFamily="Verdana"
           webFont={{
-            url: 'https://fonts.googleapis.com/css2?family=Carlito:ital,wght@0,400;0,700;1,400;1,700&display=swap',
-            format: 'woff2'
+            url: "https://fonts.googleapis.com/css2?family=Carlito:ital,wght@0,400;0,700;1,400;1,700&display=swap",
+            format: "woff2",
           }}
           fontWeight={400}
           fontStyle="normal"
@@ -318,17 +318,17 @@ const NewsletterEmail = (props: any) => {
       <Container
         style={{
           minWidth: 650,
-          padding: 20
+          padding: 20,
         }}
       >
         <Section>
-          <Section style={{ textAlign: 'center' }}>
+          <Section style={{ textAlign: "center" }}>
             <Img
               src="https://fire-ai.s3.us-west-1.amazonaws.com/fireai-logo.png"
               alt="placeholder"
               width={120}
               height={120}
-              style={{ margin: '0 auto', borderRadius: 5 }}
+              style={{ margin: "0 auto", borderRadius: 5 }}
             />
             <Heading as="h1" style={{ fontSize: 40 }}>
               Weekly Portfolio Insights
@@ -345,7 +345,7 @@ const NewsletterEmail = (props: any) => {
             without the clutter or hassle.
           </LargerText>
           <LargerText>
-            You can edit your watchlist for next week{' '}
+            You can edit your watchlist for next week{" "}
             <LargerLink
               href={`https://fireai.vercel.app/edit-watchlist?email=${user.email}`}
             >
@@ -395,10 +395,10 @@ const NewsletterEmail = (props: any) => {
               struggling to keep up with the revolution. However, {"Apple's"}
               deliberate pace seems strategic, catering to its vast 2 billion
               users. With a track record of innovation, like the Vision Pro, and
-              the{' '}
+              the{" "}
               <LargerLink href="https://www.engadget.com/apple-releases-an-ai-model-that-can-edit-images-based-on-LargerText-based-commands-081646262.html">
                 recent introduction
-              </LargerLink>{' '}
+              </LargerLink>{" "}
               of a LargerText-based AI for editing photos, Apple is clearly
               focused on creating real, everyday value distinguishing it from
               others that are building picks and shovels.
@@ -409,13 +409,13 @@ const NewsletterEmail = (props: any) => {
             src="https://fire-ai.s3.us-west-1.amazonaws.com/mar18-1.png"
             alt="placeholder"
             width={600}
-            style={{ margin: '0 auto', borderRadius: 5, marginBottom: 20 }}
+            style={{ margin: "0 auto", borderRadius: 5, marginBottom: 20 }}
           />
           <Img
             src="https://fire-ai.s3.us-west-1.amazonaws.com/mar18-2.png"
             alt="placeholder"
             width={600}
-            style={{ margin: '0 auto', borderRadius: 5 }}
+            style={{ margin: "0 auto", borderRadius: 5 }}
           />
         </Section>
       </Container>
