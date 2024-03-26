@@ -1,17 +1,17 @@
-'use client';
+"use client";
 
-import { Label } from '@/components/ui/label';
-import { Input } from '@/components/ui/input';
-import { SetStateAction, useEffect, useRef, useState } from 'react';
-import { useDebouncedValue } from '@/hooks/useDebouncedValue';
-import { getSubscription } from '@/lib/firestore';
-import { Button } from './ui/button';
-import { AddStock } from './add-stock';
-import Image from 'next/image';
-import Link from 'next/link';
-import { FeyFormat, Stock, Subscriber } from '@/types';
-import { Toaster } from 'react-hot-toast';
-import { useSearchParams } from 'next/navigation';
+import { Label } from "@/components/ui/label";
+import { Input } from "@/components/ui/input";
+import { SetStateAction, useEffect, useRef, useState } from "react";
+import { useDebouncedValue } from "@/hooks/useDebouncedValue";
+import { getSubscription } from "@/lib/firestore";
+import { Button } from "./ui/button";
+import { AddStock } from "./add-stock";
+import Image from "next/image";
+import Link from "next/link";
+import { FeyFormat, Stock, Subscriber } from "@/types";
+import { Toaster } from "react-hot-toast";
+import { useSearchParams } from "next/navigation";
 
 interface EditWatchlistProps {
   companies: FeyFormat[];
@@ -22,7 +22,7 @@ export function EditWatchlist(props: EditWatchlistProps) {
 
   const searchParams = useSearchParams();
 
-  const emailFromUrl = searchParams.get('email') ?? '';
+  const emailFromUrl = searchParams.get("email") ?? "";
 
   const [_email, setEmail] = useState(() => emailFromUrl);
 
@@ -52,8 +52,15 @@ export function EditWatchlist(props: EditWatchlistProps) {
     <>
       <Toaster />
       <div className="flex flex-col">
-        <main className="flex-1 grid w-full min-h-0 p-4 gap-4 md:p-6 md:gap-6">
+        <main className="flex-1 grid w-full min-h-0 md:p-6">
           <div className="mx-auto w-full max-w-sm space-y-4">
+            <Image
+              src="/logo-with-text.png"
+              alt="FireAI-logo-with-text"
+              className="mx-auto my-8"
+              width={280}
+              height={280}
+            />
             <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl">
               Edit Watchlist
             </h2>
@@ -66,21 +73,23 @@ export function EditWatchlist(props: EditWatchlistProps) {
                 id="email"
                 placeholder="Enter your email"
                 value={_email}
-                onChange={e => setEmail(e.target.value)}
+                onChange={(e) => setEmail(e.target.value)}
               />
               {email && !subscriber && !loading && (
                 <p className="text-red-500 text-sm mt-1">
-                  User with email: <span className="text-bold">{email}</span>{' '}
+                  User with email: <span className="text-bold">{email}</span>{" "}
                   does not exist
                 </p>
               )}
             </div>
             <div
-              className={`rounded-lg divide-y ${!!subscriber ? 'border' : ''}`}
+              className={`rounded-lg divide-y ${!!subscriber ? "border" : ""}`}
             >
               {subscriber &&
                 subscriber.stocks.map((stock, idx) => {
-                  const company = companies.find(c => c.ticker === stock.name);
+                  const company = companies.find(
+                    (c) => c.ticker === stock.name
+                  );
                   return (
                     <div
                       key={stock.name + idx}

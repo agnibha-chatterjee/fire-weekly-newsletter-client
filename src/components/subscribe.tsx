@@ -1,15 +1,15 @@
-'use client';
+"use client";
 
-import Link from 'next/link';
-import Image from 'next/image';
-import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
-import { Label } from '@/components/ui/label';
-import { Input } from '@/components/ui/input';
-import { Select } from '@/components/ui/select';
-import { Button } from '@/components/ui/button';
-import { doesEmailExist, subscribe } from '@/lib/firestore';
-import { FeyFormat, Subscriber } from '@/types';
-import toast, { Toaster } from 'react-hot-toast';
+import Link from "next/link";
+import Image from "next/image";
+import { ChangeEvent, FormEvent, useEffect, useState } from "react";
+import { Label } from "@/components/ui/label";
+import { Input } from "@/components/ui/input";
+import { Select } from "@/components/ui/select";
+import { Button } from "@/components/ui/button";
+import { doesEmailExist, subscribe } from "@/lib/firestore";
+import { FeyFormat, Subscriber } from "@/types";
+import toast, { Toaster } from "react-hot-toast";
 
 type ErrorState = {
   name?: string;
@@ -23,32 +23,32 @@ type SubscribeProps = {
 
 const topStocks = [
   {
-    tickerName: 'AAPL',
-    name: 'Apple'
+    tickerName: "AAPL",
+    name: "Apple",
   },
   {
-    tickerName: 'GOOGL',
-    name: 'Alphabet'
+    tickerName: "GOOGL",
+    name: "Alphabet",
   },
   {
-    tickerName: 'MSFT',
-    name: 'Microsoft'
+    tickerName: "MSFT",
+    name: "Microsoft",
   },
   {
-    tickerName: 'AMZN',
-    name: 'Amazon'
+    tickerName: "AMZN",
+    name: "Amazon",
   },
   {
-    tickerName: 'TSLA',
-    name: 'Tesla'
-  }
+    tickerName: "TSLA",
+    name: "Tesla",
+  },
 ];
 
 export function Subscribe(props: SubscribeProps) {
   const [formData, setFormData] = useState<Subscriber>({
-    name: '',
-    email: '',
-    stocks: []
+    name: "",
+    email: "",
+    stocks: [],
   });
   const [errors, setErrors] = useState<ErrorState>({});
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -57,20 +57,20 @@ export function Subscribe(props: SubscribeProps) {
     const { name, value } = e.target;
     setFormData({
       ...formData,
-      [name]: value
+      [name]: value,
     });
   };
 
   const validateForm = () => {
     const newErrors: ErrorState = {};
     if (!formData.name) {
-      newErrors.name = 'Name is required';
+      newErrors.name = "Name is required";
     } else if (formData.name.length < 2) {
-      newErrors.name = 'Name must be at least 2 characters long';
+      newErrors.name = "Name must be at least 2 characters long";
     }
 
     if (!formData.stocks.length) {
-      newErrors.stocks = 'Please select a stock';
+      newErrors.stocks = "Please select a stock";
     }
     return newErrors;
   };
@@ -84,7 +84,7 @@ export function Subscribe(props: SubscribeProps) {
       if (isExistingSubscriber) {
         setErrors({
           email:
-            "A user with the same email already exists! If you're trying to edit your watchlist, please use the link under the form."
+            "A user with the same email already exists! If you're trying to edit your watchlist, please use the link under the form.",
         });
         return;
       }
@@ -92,11 +92,11 @@ export function Subscribe(props: SubscribeProps) {
       const successfulSignUp = await subscribe(formData);
 
       if (successfulSignUp) {
-        toast.success('Welcome onboard! 🚀');
+        toast.success("Welcome onboard! 🚀");
         return;
       }
 
-      toast.error('Failed to subscribe! Please try again');
+      toast.error("Failed to subscribe! Please try again");
     } else {
       setErrors(formErrors);
     }
@@ -105,9 +105,9 @@ export function Subscribe(props: SubscribeProps) {
   useEffect(() => {
     if (isSubmitted) {
       setFormData({
-        name: '',
-        email: '',
-        stocks: []
+        name: "",
+        email: "",
+        stocks: [],
       });
       setErrors({});
       setIsSubmitted(false);
@@ -119,12 +119,19 @@ export function Subscribe(props: SubscribeProps) {
       <Toaster />
       <div className="container flex flex-col items-center space-y-4 px-4 md:px-6">
         <div className="space-y-2 text-center">
+          <Image
+            src="/logo-with-text.png"
+            alt="FireAI-logo-with-text"
+            className="mx-auto my-8"
+            width={280}
+            height={280}
+          />
           <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl">
             Subscribe to our Newsletter
           </h1>
           <p className="max-w-[600px] text-gray-500 md:text-xl dark:text-gray-400">
-            Sign up to get the latest stock market news and trends delivered to
-            your inbox.
+            Get the latest stock market news and insights delivered to your
+            inbox every Monday.
           </p>
         </div>
         <div className="w-full max-w-sm space-y-2">
@@ -181,9 +188,9 @@ export function Subscribe(props: SubscribeProps) {
                   return (
                     <div
                       onClick={() =>
-                        setFormData(prev => ({
+                        setFormData((prev) => ({
                           ...prev,
-                          stocks: [...prev.stocks, stock]
+                          stocks: [...prev.stocks, stock],
                         }))
                       }
                       key={stock.tickerName + idx}
