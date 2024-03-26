@@ -123,13 +123,13 @@ export function Subscribe(props: SubscribeProps) {
             src="/logo-with-text.png"
             alt="FireAI-logo-with-text"
             className="mx-auto my-8"
-            width={280}
-            height={280}
+            width={250}
+            height={250}
           />
-          <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl">
+          <h1 className="text-xl font-bold tracking-tighter md:text-2xl">
             Subscribe to our Newsletter
           </h1>
-          <p className="max-w-[600px] text-gray-500 md:text-xl dark:text-gray-400">
+          <p className="max-w-[420px] text-gray-500 md:text-md dark:text-gray-400">
             Get the latest stock market news and insights delivered to your
             inbox every Monday.
           </p>
