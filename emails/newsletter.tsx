@@ -23,25 +23,12 @@ type CompanyNewsProps = {
 };
 
 function LargerText(props: any) {
-  return (
-    <Text
-      style={{
-        fontSize: 16,
-      }}
-    >
-      {props.children}
-    </Text>
-  );
+  return <Text className="responsive-text">{props.children}</Text>;
 }
 
 function LargerLink(props: any) {
   return (
-    <Link
-      href={props.href}
-      style={{
-        fontSize: 16,
-      }}
-    >
+    <Link href={props.href} className="responsive-text">
       {props.children}
     </Link>
   );
@@ -72,26 +59,27 @@ function CompanyNews(props: CompanyNewsProps) {
             <Img
               src={`https://fire-ai.s3.us-west-1.amazonaws.com/company-logos-jpg/${tickerName}.jpg`}
               alt="placeholder"
-              width={30}
-              height={30}
+              className="responsive-logo"
               style={{ marginRight: 10, borderRadius: 3 }}
             />
           </Column>
           <Column>
-            <LargerText>
-              <span style={{ fontWeight: "bold" }}>{companyName}</span> $
-              {stockPrice} (
-              {isPositive ? (
-                <span style={{ color: "green" }}>+{percentChange}%</span>
-              ) : (
-                <span style={{ color: "red" }}>{percentChange}%</span>
-              )}
-              )
-            </LargerText>
+            <Text>
+              <span className="responsive-text">
+                <span style={{ fontWeight: "bold" }}>{companyName}</span>{" "}
+                <span>${stockPrice} (</span>
+                {isPositive ? (
+                  <span style={{ color: "green" }}>+{percentChange}%</span>
+                ) : (
+                  <span style={{ color: "red" }}>{percentChange}%</span>
+                )}
+                <span>)</span>
+              </span>
+            </Text>
           </Column>
         </Row>
       </Section>
-      <span style={{ fontSize: 16 }}>{news}</span>
+      <LargerText>{news}</LargerText>
     </Section>
   );
 }
@@ -191,10 +179,58 @@ const NewsletterEmail = (props: any) => {
             fontWeight={400}
             fontStyle="normal"
           />
+          <style>
+            {`
+            .responsive-text {
+               font-size: 16px;
+            }
+
+            .responsive-heading {
+                font-size: 24px;
+            }
+
+            .responsive-logo {
+                width: 30px;
+                height: 30px;
+            }
+
+            @media screen and (max-width: 600px) {
+                .responsive-text {
+                    font-size: 24px;
+                }
+
+
+                .responsive-heading {
+                    font-size: 32px;
+                }
+
+                .responsive-logo {
+                width: 40px;
+                height: 40px;
+                }
+
+            }
+
+            @media screen and (max-width: 400px) {
+
+                .responsive-heading {
+                    font-size: 40px;
+                }
+
+                .responsive-text {
+                    font-size: 32px;
+                }
+
+                .responsive-logo {
+                width: 40px;
+                height: 40px;
+                }
+            }
+          `}
+          </style>
         </Head>
         <Container
           style={{
-            minWidth: 650,
             padding: 20,
           }}
         >
@@ -207,12 +243,10 @@ const NewsletterEmail = (props: any) => {
                 height={120}
                 style={{ margin: "0 auto", borderRadius: 5 }}
               />
-              <Heading as="h1" style={{ fontSize: 40 }}>
-                Weekly Portfolio Insights
-              </Heading>
+              <Heading as="h1">Weekly Portfolio Insights</Heading>
             </Section>
 
-            <Heading as="h2" style={{ fontSize: 34 }}>
+            <Heading as="h2" className="responsive-heading">
               Hello!
             </Heading>
             <LargerText>Thanks for subscribing!</LargerText>
@@ -232,7 +266,7 @@ const NewsletterEmail = (props: any) => {
           </Section>
 
           <Section>
-            <Heading as="h2" style={{ fontSize: 34 }}>
+            <Heading as="h2" className="responsive-heading">
               Your Watchlist
             </Heading>
             {newss.map((n: any) => (
@@ -247,7 +281,7 @@ const NewsletterEmail = (props: any) => {
             ))}
           </Section>
           {/* <Section>
-            <Heading as="h2" style={{ fontSize: 34 }}>
+            <Heading as="h2">
               Links that {"don't"} suck
             </Heading>
             <ul>
@@ -261,40 +295,49 @@ const NewsletterEmail = (props: any) => {
             </ul>
           </Section> */}
           <Section>
-            <LargerText>
-              <Heading as="h2" style={{ fontSize: 34 }}>
-                The case for Apple
+            <Text>
+              <Heading
+                as="h2"
+                style={{ fontFamily: "IBM Plex Sans" }}
+                className="responsive-heading"
+              >
+                Stock Highlight: ARM
               </Heading>
-              <LargerText>
-                Apple is currently trading far below expectations and have
-                remained mostly flat despite the recent tech run up due to AI.
-                The main reason is probably because of the sentiment that Apple
-                is struggling to keep up with the revolution. However,{" "}
-                {"Apple's"}
-                deliberate pace seems strategic, catering to its vast 2 billion
-                users. With a track record of innovation, like the Vision Pro,
-                and the{" "}
-                <LargerLink href="https://www.engadget.com/apple-releases-an-ai-model-that-can-edit-images-based-on-LargerText-based-commands-081646262.html">
-                  recent introduction
-                </LargerLink>{" "}
-                of a LargerText-based AI for editing photos, Apple is clearly
-                focused on creating real, everyday value distinguishing it from
-                others that are building picks and shovels.
-                <LargerText>Stay tuned 👀</LargerText>
-              </LargerText>
-            </LargerText>
-            <Img
-              src="https://fire-ai.s3.us-west-1.amazonaws.com/mar18-1.png"
-              alt="placeholder"
-              width={600}
-              style={{ margin: "0 auto", borderRadius: 5, marginBottom: 20 }}
-            />
-            <Img
-              src="https://fire-ai.s3.us-west-1.amazonaws.com/mar18-2.png"
-              alt="placeholder"
-              width={600}
-              style={{ margin: "0 auto", borderRadius: 5 }}
-            />
+              <Text>
+                {"Nvidia's"} latest revelation at the GTC event has taken the AI
+                world by storm. 💥 The {"company's"} groundbreaking Blackwell
+                architecture, powered by the GB200 superchip with an integrated
+                Arm-based Grace CPU, is set to revolutionize AI processing. This
+                development highlights Arm {"Holdings'"} crucial role in driving
+                the AI revolution forward. 🚀
+                <br />
+                <br />
+                What sets Arm apart is its unique licensing model, where it
+                gives out their chip designs like sharing toy blueprints, so
+                companies can build fun new AI computers! This flexibility has
+                sparked innovation in AI hardware, with {"Arm's"} designs
+                becoming prevalent in cloud computing and data centers. By
+                working in tandem with {"Nvidia's "}
+                powerful GPUs, {"Arm's "} CPUs are helping unlock AI{" "}
+                {"processing's "}
+                full potential. To put into simple terms, if the AI industry is
+                the rocket, ARM has licensing rights over the {"fuel's "}
+                composition.
+                <br />
+                <br />
+                Industry giants are taking notice of {"Arm's"}
+                capabilities. 👀 {"Nvidia's"} GH200 Grace Hopper Superchip and
+                {" Microsoft's "} AI servers both rely on {"Arm's"}{" "}
+                high-performance V9 CPU cores to deliver cutting-edge
+                performance. As businesses capitalize on {"AI's"}
+                multi-trillion-dollar potential, Arm finds itself in a prime
+                position to benefit from this growth.
+                <br />
+                <br />
+                🌱 Wait for a good buying opportunity 📉 to get in on the
+                action!
+              </Text>
+            </Text>
           </Section>
         </Container>
       </Html>
@@ -315,12 +358,7 @@ const NewsletterEmail = (props: any) => {
           fontStyle="normal"
         />
       </Head>
-      <Container
-        style={{
-          minWidth: 650,
-          padding: 20,
-        }}
-      >
+      <Container>
         <Section>
           <Section style={{ textAlign: "center" }}>
             <Img
@@ -335,9 +373,7 @@ const NewsletterEmail = (props: any) => {
             </Heading>
           </Section>
 
-          <Heading as="h2" style={{ fontSize: 34 }}>
-            Hello!
-          </Heading>
+          <Heading as="h2">Hello!</Heading>
           <LargerText>Thanks for subscribing!</LargerText>
           <LargerText>
             Fire AI delivers curated news and insights tailored to your
@@ -355,9 +391,7 @@ const NewsletterEmail = (props: any) => {
         </Section>
 
         <Section>
-          <Heading as="h2" style={{ fontSize: 34 }}>
-            Your Watchlist
-          </Heading>
+          <Heading as="h2">Your Watchlist</Heading>
           {news.map((n: any) => (
             <CompanyNews
               key={n.tickerName}
@@ -370,9 +404,7 @@ const NewsletterEmail = (props: any) => {
           ))}
         </Section>
         <Section>
-          <Heading as="h2" style={{ fontSize: 34 }}>
-            Links that {"don't"} suck
-          </Heading>
+          <Heading as="h2">Links that {"don't"} suck</Heading>
           <ul>
             {links.links.map((link: any) => {
               return (
@@ -384,39 +416,45 @@ const NewsletterEmail = (props: any) => {
           </ul>
         </Section>
         <Section>
-          <LargerText>
-            <Heading as="h2" style={{ fontSize: 34 }}>
-              The case for Apple
-            </Heading>
-            <LargerText>
-              Apple is currently trading far below expectations and have
-              remained mostly flat despite the recent tech run up due to AI. The
-              main reason is probably because of the sentiment that Apple is
-              struggling to keep up with the revolution. However, {"Apple's"}
-              deliberate pace seems strategic, catering to its vast 2 billion
-              users. With a track record of innovation, like the Vision Pro, and
-              the{" "}
-              <LargerLink href="https://www.engadget.com/apple-releases-an-ai-model-that-can-edit-images-based-on-LargerText-based-commands-081646262.html">
-                recent introduction
-              </LargerLink>{" "}
-              of a LargerText-based AI for editing photos, Apple is clearly
-              focused on creating real, everyday value distinguishing it from
-              others that are building picks and shovels.
-              <LargerText>Stay tuned 👀</LargerText>
-            </LargerText>
+          <Heading
+            as="h2"
+            style={{ fontFamily: "IBM Plex Sans" }}
+            className="responsive-heading"
+          >
+            Stock Highlight: ARM
+          </Heading>
+          <LargerText className="responsive-text">
+            {"Nvidia's"} latest revelation at the GTC event has taken the AI
+            world by storm. 💥 The {"company's"} groundbreaking Blackwell
+            architecture, powered by the GB200 superchip with an integrated
+            Arm-based Grace CPU, is set to revolutionize AI processing. This
+            development highlights Arm {"Holdings'"} crucial role in driving the
+            AI revolution forward. 🚀
+            <br />
+            <br />
+            What sets Arm apart is its unique licensing model, where it gives
+            out their chip designs like sharing toy blueprints, so companies can
+            build fun new AI computers! This flexibility has sparked innovation
+            in AI hardware, with {"Arm's"} designs becoming prevalent in cloud
+            computing and data centers. By working in tandem with {"Nvidia's "}
+            powerful GPUs, {"Arm's "} CPUs are helping unlock AI{" "}
+            {"processing's "}
+            full potential. To put into simple terms, if the AI industry is the
+            rocket, ARM has licensing rights over the {"fuel's "}
+            composition.
+            <br />
+            <br />
+            Industry giants are taking notice of {"Arm's"}
+            capabilities. 👀 {"Nvidia's"} GH200 Grace Hopper Superchip and
+            {" Microsoft's "} AI servers both rely on {"Arm's"} high-performance
+            V9 CPU cores to deliver cutting-edge performance. As businesses
+            capitalize on {"AI's"}
+            multi-trillion-dollar potential, Arm finds itself in a prime
+            position to benefit from this growth.
+            <br />
+            <br />
+            🌱 Wait for a good buying opportunity 📉 to get in on the action!
           </LargerText>
-          <Img
-            src="https://fire-ai.s3.us-west-1.amazonaws.com/mar18-1.png"
-            alt="placeholder"
-            width={600}
-            style={{ margin: "0 auto", borderRadius: 5, marginBottom: 20 }}
-          />
-          <Img
-            src="https://fire-ai.s3.us-west-1.amazonaws.com/mar18-2.png"
-            alt="placeholder"
-            width={600}
-            style={{ margin: "0 auto", borderRadius: 5 }}
-          />
         </Section>
       </Container>
     </Html>
