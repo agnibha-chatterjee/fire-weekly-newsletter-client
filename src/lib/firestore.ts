@@ -91,19 +91,33 @@ export const getAllSubscriptions = async () => {
   }
 };
 
+// export const getNewsSummaryForStock = async (ticker: string) => {
+//   try {
+//     const parentDocRef = doc(db, "summaries", "03-24-2024");
+//     const nestedCollectionRef = collection(parentDocRef, ticker);
+
+//     const allDocs = await getDocs(nestedCollectionRef);
+//     let docc: any = {};
+//     allDocs.forEach((doc) => {
+//       docc = { ...doc.data(), id: doc.id };
+//     });
+
+//     return {
+//       ...docc,
+//     };
+//   } catch (error) {
+//     console.error("Error getting document: ", error);
+//     return undefined;
+//   }
+// };
+
 export const getNewsSummaryForStock = async (ticker: string) => {
   try {
-    const parentDocRef = doc(db, "summaries", "03-24-2024");
-    const nestedCollectionRef = collection(parentDocRef, ticker);
-
-    const allDocs = await getDocs(nestedCollectionRef);
-    let docc: any = {};
-    allDocs.forEach((doc) => {
-      docc = { ...doc.data(), id: doc.id };
-    });
-
+    const tickerNews = doc(db, SUMMARIES_COLLECTION, ticker);
+    const querySnapshot = await getDoc(tickerNews);
     return {
-      ...docc,
+      tickerName: querySnapshot.id,
+      ...querySnapshot.data(),
     };
   } catch (error) {
     console.error("Error getting document: ", error);
