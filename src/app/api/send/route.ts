@@ -10,6 +10,27 @@ export async function GET() {
     const users = await getAllSubscriptions();
     // const testUser = users.filter((user) => user.test)[0];
 
+    // const news = [];
+    // for (const stocks of testUser.stocks) {
+    //   const newsSummary = await getNewsSummaryForStock(stocks.tickerName);
+    //   news.push({
+    //     ...newsSummary,
+    //     tickerName: stocks.tickerName,
+    //     // @ts-ignore
+    //     splitSummary: newsSummary.summary.split("|"),
+    //   });
+    // }
+
+    // await resend.emails.send({
+    //   from: "FireAI Weekly <weekly@fire-weekly.com>",
+    //   to: testUser.email,
+    //   subject: "Weekly Portfolio Insights 🚀",
+    //   react: NewsletterV4({
+    //     newsData: news,
+    //     user: testUser,
+    //   }) as React.ReactElement,
+    // });
+
     for (const user of users) {
       const news = [];
       for (const stocks of user.stocks) {

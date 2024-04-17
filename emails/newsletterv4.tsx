@@ -210,37 +210,86 @@ export default function NewsletterV4(props: any) {
             ))}
             <Section>
               <Heading as="h2" className="text-md sm:text-xl">
-                BYD: The Rising EV Star You Need to Watch 🌟
+                {"What's"} Thriving ✨
               </Heading>
-              <Text className="text-base sm:text-md">
-                If {"you're"} looking to invest in the booming electric vehicle
-                (EV) industry, BYD should be on your radar. This Chinese
-                powerhouse has overtaken Tesla as the {"world's"} largest EV
-                seller, delivering over 3 million EVs in 2023.
+              <Section>
+                <Heading as="h3" className="text-base sm:text-lg">
+                  GE Aerospace Soars to New Heights (GE) 📈{" "}
+                  <span className="text-green-600">+6.1%</span>
+                </Heading>
+                <Text>
+                  In the diverse family of General {"Electric's"} enterprises,
+                  Aerospace has emerged as the standout performer. Recently
+                  transitioning to an independent entity on the stock market
+                  while retaining the iconic GE symbol, GE Aerospace has made a
+                  bold statement by increasing its dividend by a whopping 250%.
+                  This move underlines the {"company's"} commitment to enhancing
+                  shareholder value.
+                </Text>
+              </Section>
+              <Section>
+                <Heading as="h3" className="text-base sm:text-lg">
+                  Amazon Continues its Upward Trend (AMZN){" "}
+                  <span className="text-green-600">+2.8%</span>
+                </Heading>
+                <Text>
+                  Amazon remains a perennial favorite among analysts, who are
+                  now even more optimistic about its prospects. The excitement
+                  is particularly fueled by the potential for accelerated growth
+                  in Amazon Web Services (AWS) and its e-commerce platform,
+                  driven by advancements in AI. Despite this enthusiasm, Amazon
+                  has streamlined its AWS sales team, a move that speaks to the
+                  self-evident appeal of its services.
+                </Text>
+              </Section>
+              <Heading as="h2" className="text-md sm:text-xl">
+                Facing Challenges 🍂
+              </Heading>
+              <Section>
+                <Heading as="h3" className="text-base sm:text-lg">
+                  Enphase Energy Faces Headwinds (ENPH) 📉{" "}
+                  <span className="text-red-700"> -7.1%</span>
+                </Heading>
+                <Text>
+                  In the diverse family of General {"Electric's"} enterprises,
+                  Aerospace has emerged as the standout performer. Recently
+                  transitioning to an independent entity on the stock market
+                  while retaining the iconic GE symbol, GE Aerospace has made a
+                  bold statement by increasing its dividend by a whopping 250%.
+                  This move underlines the {"company's"} commitment to enhancing
+                  shareholder value.
+                </Text>
+              </Section>
+              <Section>
+                <Heading as="h3" className="text-base sm:text-lg">
+                  Tesla Experiences Mixed Fortunes (TSLA) 📉{" "}
+                  <span className="text-red-700">+2.8%</span>
+                </Heading>
+                <Text>
+                  Tesla has been riding a rollercoaster of news. On one hand,
+                  the departure of key AI talent to other ventures associated
+                  with Elon Musk has been a cause for concern. On the brighter
+                  side, the announcement of {"Tesla's"} upcoming robotaxi
+                  service set to launch on August 8th has injected some optimism
+                  into the {"company's"} outlook.
+                </Text>
+              </Section>
+            </Section>
+            <Heading as="h2" className="text-md sm:text-xl">
+              Note
+            </Heading>
+            <Section>
+              <Text>
+                We are pivoting! Unfortunately, this is the last Fire AI Weekly
+                Portfolio Insights newsletter. Thank you for reading our emails
+                and all the support!
                 <br />
                 <br />
-                😲 What sets BYD apart? Its vertically integrated business
-                model, allowing in-house production of key components like
-                batteries, gives it a competitive edge. This translates to lower
-                costs and higher profit margins (22% gross margin) compared to
-                Tesla. 💰
+                We are exploring a new direction, and are excited to share{" "}
+                {"what's"} next!
                 <br />
                 <br />
-                But {"that's"} not all! BYD caters to diverse markets with
-                affordable options like the $10,000 Seagull, making EVs
-                accessible worldwide. 🌍 As it expands globally, {"BYD's "}
-                growth potential is electrifying. 🔋
-                <br />
-                <br />
-                With the Chinese market at historic lows, the {
-                  "government's"
-                }{" "}
-                knack for fueling markets to improve sentiments could provide a
-                tailwind for BYD. 📈 Moreover, {"BYD's"} efficient production,
-                diverse product range, and focus on vertical integration give it
-                an edge over other EV players. With a price-to-earnings ratio at
-                historic lows, now could be the perfect time to charge up your
-                portfolio with BYD stock. 🏆
+                Stay tuned for next {"week's"} email.
               </Text>
             </Section>
           </Container>
