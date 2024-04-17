@@ -1,11 +1,8 @@
 "use client";
 
-import { useRouter } from "next/navigation";
 import { useMethod } from "react-method-elements";
 
 export default function Page() {
-  const router = useRouter();
-
   const method = useMethod({
     env: "dev",
     onEvent: (payload) => {

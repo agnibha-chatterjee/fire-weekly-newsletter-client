@@ -1,5 +1,5 @@
-import { Subscribe } from '@/components/subscribe';
-import companies from '@/data/companies.json';
+import { Subscribe } from "@/components/subscribe";
+import companies from "@/data/companies.json";
 
 export default function Home() {
   return (
